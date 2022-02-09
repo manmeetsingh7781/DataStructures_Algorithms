@@ -1,6 +1,7 @@
-package com.company;
+package com.company.Trees;
 
-import org.jetbrains.annotations.NotNull;
+import com.company.BinaryTree;
+import com.company.Node;
 
 import java.util.*;
 
@@ -25,7 +26,6 @@ public class AVLTree<T extends Number> extends BinaryTree<T> {
         return balance >= -1 && balance <= 1;
     }
 
-    private @NotNull
     Node<T> LLRotation(Node<T> root) {
 
         // Left Left insertion: Right Rotations are performed when Root has BF of 2 (indicating Left side Heavy)

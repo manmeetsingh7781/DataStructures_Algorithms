@@ -1,4 +1,4 @@
-public class SelectionSort{
+class SelectionSort{
 
 
       // find the smallest element and place it at the beginning

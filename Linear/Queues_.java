@@ -1,5 +1,3 @@
-package com.company.DynamicDS;
-
 import java.util.Optional;
 
 public class Queues_<T> {
