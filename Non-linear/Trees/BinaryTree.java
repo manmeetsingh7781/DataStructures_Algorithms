@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Trees;
 
 //
 // Source code recreated from a .class file by IntelliJ IDEA
@@ -12,9 +12,6 @@ import java.util.ArrayList;
 public class BinaryTree<T extends Number> {
     private Node<T> root;
 
-    public BinaryTree() {
-        System.out.println("Binary Tree is created");
-    }
 
     public Node<T> getRoot() {
         return root;
@@ -153,6 +150,7 @@ public class BinaryTree<T extends Number> {
     }
 
     public void printPreOrder() {
+        System.out.println();
         this.preOrder(this.root);
         System.out.println();
     }

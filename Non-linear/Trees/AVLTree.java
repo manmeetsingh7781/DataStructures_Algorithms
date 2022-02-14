@@ -71,7 +71,7 @@ public class AVLTree<T extends Number> extends BinaryTree<T> {
         root.setRight(rootTemp);
 
 
-        // finally insert the remaining children on node that we wanted to move into the tree
+        // finally, insert the remaining children on node that we wanted to move into the tree
         // left child goes into left side of tree and right goes into right side of tree
         root.getLeft().setRight(rightSubOfLeft.getLeft());
         root.getRight().setLeft(rightSubOfLeft.getRight());
@@ -99,7 +99,7 @@ public class AVLTree<T extends Number> extends BinaryTree<T> {
         // rotate the root by setting the left that we just backed up
         root.setLeft(rootTemp);
 
-        // finally insert the remaining children on node that we wanted to move into the tree
+        // finally, insert the remaining children on node that we wanted to move into the tree
         // left child goes into left side of tree and right goes into right side of tree
         root.getLeft().setRight(leftSubOfRight.getLeft());
         root.getRight().setLeft(leftSubOfRight.getRight());
@@ -110,7 +110,7 @@ public class AVLTree<T extends Number> extends BinaryTree<T> {
     private Node<T> RRRotation(Node<T> root) {
         /*
             RR Rotation
-            Right Right Insertion :
+            Right-Right Insertion :
             Need Left Rotations, performed when Root has BF of -2 (right heavy) and Root->Right BF is -1 (Right heavy)
              */
         // backup root
@@ -126,7 +126,7 @@ public class AVLTree<T extends Number> extends BinaryTree<T> {
         // set left of root->Right node to parent (original) node
         temp.setRight(rootR);
 
-        // finally set the left node of what we just rotated
+        // finally, set the left node of what we just rotated
         root.setLeft(temp);
         return root;
     }

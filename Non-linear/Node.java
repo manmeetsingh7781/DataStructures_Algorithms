@@ -13,6 +13,11 @@ public class Node<T extends Number> {
     public Node(T item) {
         data = item;
     }
+    public Node(T item, Node<T> left, Node<T> right) {
+        data = item;
+        this.left = left;
+        this.right = right;
+    }
 
     public T getData() {
         return this.data;
