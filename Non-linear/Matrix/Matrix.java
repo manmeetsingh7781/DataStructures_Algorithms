@@ -28,28 +28,32 @@ public class Matrix {
     public Matrix(int [] [] matrix) {
         this.matrix = matrix;
         this.m = matrix.length;     // rows
-        this.n = 0;  // cols
+        this.n = matrix[0].length;  // cols
 
-        // check number of cols of each row
-        for (int row = 0; row < m; row++){
-            if (n < matrix[row].length) {
-                n = matrix[row].length;
+        try {
+            // check number of cols of each row
+            for (int row = 1; row < m; row++) {
+                if (n != matrix[row].length) {
+                    throw new Exception("Matrix Dimensions does not match: Error at row " + row);
+                }
             }
         }
-
+        catch (Exception er) {
+            er.printStackTrace();
+        }
         this.isSquare = m == n;
     }
 
 
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("[\n");
+        str.append("[\n").append("\t");
 
         for (int[] i : this.matrix) {
-            str.append(Arrays.toString(i)).append('\n');
+            str.append(Arrays.toString(i)).append('\n').append("\t");
         }
 
-        str.append("]");
+        str.append("\b]");
         return str.toString();
     }
 
@@ -141,8 +145,6 @@ public class Matrix {
                 {1, 2},
                 {1, 2}
         };
-
-        System.out.println(Arrays.toString(m[1]));
 
         Matrix m2 = new Matrix(m);
         System.out.println(m2);

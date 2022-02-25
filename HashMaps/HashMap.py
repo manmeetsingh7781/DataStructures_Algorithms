@@ -24,14 +24,6 @@ Blazing fast lookup with O(1) time complexity
 
 """
 
-
-class HashMap:
-
-    # in this class we will keep pair of (key, value)
-    def __init__(self):
-        self.data = []  # buckets | to store data in it
-
-
 class Node:
 
     def __init__(self, data, next):
@@ -40,24 +32,46 @@ class Node:
 
 
 
+
 class LinkedList:
 
     def __init__(self, item):
         self.head = Node(item, None)
 
-    def __add__(self, item):
+    def add(self, item):
         if self.head:
             temp = self.head
             while temp.next:
                 temp = temp.next
-            temp.next =  Node(item, None)
+            temp.next = Node(item, None)
             head = temp
 
+class HashMap:
 
-l = LinkedList(10)
-l.__add__(20)
-l.__add__(30)
+    # in this class we will keep a pair of (key, value)
+    def __init__(self, size):
+        self.data = [None for _ in range(size)]  # buckets | to store data in it
+        self.size = size
 
-print(l.head.data)
-print(l.head.next.data)
-print(l.head.next.next.data)
+
+    def __str__(self):
+        return str(self.data)
+
+
+    def hash(self, key):
+        result = 0
+
+        for i in key:
+            result += ord(i)
+
+        return result % self.size
+
+
+    def put(self, key, value):
+        self.data[self.hash(key)] = value
+
+
+
+
+hash = HashMap(10)
+print(hash)
