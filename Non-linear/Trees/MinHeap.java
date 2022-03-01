@@ -40,7 +40,7 @@ public class MinHeap {
     private int size;
 
     public MinHeap(int size) {
-        this.index = 0;
+        this.index = -1;
         this.data = new int[size];
 
         for (int i = 0; i < size; i++) data[i] = Integer.MIN_VALUE;
@@ -48,25 +48,47 @@ public class MinHeap {
     }
 
     public void insert(int item) {
+        // normal insertion in linear way
+        if (isFull()) return;
+        data[++index] = item;
+        heapify(index);
+    }
 
-        if (data[index] == Integer.MIN_VALUE){
-            data[index] = item;
-        }else if (data[(2 * index) + 1] == Integer.MIN_VALUE){
-            data[(2 * index) + 1] = item;
-            System.out.println("Inserting Left");
-        }else if (data[(2 * index) + 2] == Integer.MIN_VALUE){
-            data[(2 * index) + 2] = item;
-            System.out.println("inserting Right");
-        }else {
-            ++index;
-            System.out.println("Calling another");
-            insert(item);
+    public void heapify(int index) {
 
+        // index of parent node
+        int parentIndex = (index - 1) / 2;
+
+        // if index is not valid then return
+        if (parentIndex < 0) return;
+
+        // if parent node is greater than current node then swap
+        if (data[parentIndex] != Integer.MIN_VALUE && data[index] < data[parentIndex]) {
+            // swap data[parentIndex] and data[index]
+            int temp = data[parentIndex];
+            data[parentIndex] = data[index];
+            data[index] = temp;
+
+            // if current node is greater than parent node then heapify again until parent node is greater than current node
+            heapify(parentIndex);
         }
+
+    }
+
+    public int remove() {
+        if (isEmpty()) return -1;
+
+        int element = data[0];
+
+        return element;
     }
 
     public boolean isFull() {
         return this.size == this.index - 1;
+    }
+
+    public boolean isEmpty() {
+        return index == -1;
     }
 
     @Override
@@ -74,12 +96,18 @@ public class MinHeap {
         return Arrays.toString(data);
     }
 
+
     public static void main(String[] args) {
         MinHeap minHeap = new MinHeap(10);
-       for (int i = 0; i < 10; i++) {
-           minHeap.insert(i);
-           System.out.println("\n");
-       }
+        minHeap.insert(10);
+        minHeap.insert(5);
+        minHeap.insert(2);
+        minHeap.insert(3);
+        minHeap.insert(1);
+        System.out.println(minHeap);
+
+
+        System.out.println("Removing element: " + minHeap.remove());
 
         System.out.println(minHeap);
     }
