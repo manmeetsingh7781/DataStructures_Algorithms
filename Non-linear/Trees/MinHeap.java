@@ -82,6 +82,7 @@ public class MinHeap {
     
         index--;
         
+        // since we placed new element at top, we need to heapify again in order to get minimum value
         heapify_bottom(0);
 
         return element;
@@ -95,16 +96,23 @@ public class MinHeap {
 
     // top to bottom heapify
     private void heapify_bottom(int i) {
-
+        
+        // if given index is greater then number of items stored in list then return
         if ( 2 * i > index || isEmpty()) return; 
 
+        // index's of child of parent node
         int left_child = (2 * i)+ 1;
         int right_child = (2 * i) + 2;
-
+        
+        // if left child is not NULL and Left child is smaller then Right child as well Left child has smaller value then root then swap
         if (data[left_child] != Integer.MAX_VALUE && data[left_child] < data[right_child] && data[left_child] < data[i]) {
             swap(i, left_child);
+            
+            // heapify the left sub tree so that we bubble down the largest element to the bottom of the tree
             heapify_bottom(left_child);
         }else {
+             
+            // if right child is not NULL and Right child has smaller value then root then swap
             if (data[right_child] != Integer.MAX_VALUE && data[right_child] < data[i]) {
                 swap(i, right_child);
                 heapify_bottom(right_child);
