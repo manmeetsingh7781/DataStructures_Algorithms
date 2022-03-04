@@ -41,9 +41,10 @@ public class MinHeap {
 
     public MinHeap(int size) {
         this.index = -1;
+        
         this.data = new int[size];
 
-        for (int i = 0; i < size; i++) data[i] = Integer.MIN_VALUE;
+        for (int i = 0; i < size; i++) data[i] = Integer.MAX_VALUE;
         this.size = size;
     }
 
@@ -63,11 +64,8 @@ public class MinHeap {
         if (parentIndex < 0) return;
 
         // if parent node is greater than current node then swap
-        if (data[parentIndex] != Integer.MIN_VALUE && data[index] < data[parentIndex]) {
-            // swap data[parentIndex] and data[index]
-            int temp = data[parentIndex];
-            data[parentIndex] = data[index];
-            data[index] = temp;
+        if (data[parentIndex] != Integer.MAX_VALUE && data[index] < data[parentIndex]) {
+            swap(parentIndex, index);
 
             // if current node is greater than parent node then heapify again until parent node is greater than current node
             heapify(parentIndex);
@@ -78,9 +76,41 @@ public class MinHeap {
     public int remove() {
         if (isEmpty()) return -1;
 
-        int element = data[0];
+        int element = data[0];  // get root element
+        data[0] = data[index];  // get the last element and repalce it with root element
+        data[index] = Integer.MAX_VALUE; 
+    
+        index--;
+        
+        heapify_bottom(0);
 
         return element;
+    }
+
+    private void swap(int indexA, int indexB) {
+        int temp = data[indexA];
+        data[indexA] = data[indexB];
+        data[indexB] = temp;
+    }
+
+    // top to bottom heapify
+    private void heapify_bottom(int i) {
+
+        if ( 2 * i > index || isEmpty()) return; 
+
+        int left_child = (2 * i)+ 1;
+        int right_child = (2 * i) + 2;
+
+        if (data[left_child] != Integer.MAX_VALUE && data[left_child] < data[right_child] && data[left_child] < data[i]) {
+            swap(i, left_child);
+            heapify_bottom(left_child);
+        }else {
+            if (data[right_child] != Integer.MAX_VALUE && data[right_child] < data[i]) {
+                swap(i, right_child);
+                heapify_bottom(right_child);
+            }
+        }
+
     }
 
     public boolean isFull() {
@@ -98,15 +128,31 @@ public class MinHeap {
 
 
     public static void main(String[] args) {
-        MinHeap minHeap = new MinHeap(10);
+        MinHeap minHeap = new MinHeap(30);
         minHeap.insert(10);
         minHeap.insert(5);
         minHeap.insert(2);
         minHeap.insert(3);
-        minHeap.insert(1);
+        minHeap.insert(-3);
+        minHeap.insert(31);
+        minHeap.insert(-45);
+        minHeap.insert(43);
+        minHeap.insert(-443);
+        minHeap.insert(10000000);
         System.out.println(minHeap);
 
 
+        System.out.println("Removing element: " + minHeap.remove());
+        System.out.println("Removing element: " + minHeap.remove());
+        System.out.println("Removing element: " + minHeap.remove());
+        System.out.println("Removing element: " + minHeap.remove());
+        System.out.println("Removing element: " + minHeap.remove());
+        System.out.println("Removing element: " + minHeap.remove());
+        System.out.println("Removing element: " + minHeap.remove());
+        System.out.println("Removing element: " + minHeap.remove());
+        System.out.println("Removing element: " + minHeap.remove());
+        System.out.println("Removing element: " + minHeap.remove());
+        System.out.println("Removing element: " + minHeap.remove());
         System.out.println("Removing element: " + minHeap.remove());
 
         System.out.println(minHeap);
