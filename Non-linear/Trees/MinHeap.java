@@ -50,9 +50,17 @@ public class MinHeap {
 
     public void insert(int item) {
         // normal insertion in linear way
-        if (isFull()) return;
-        data[++index] = item;
-        heapify(index);
+        if (isFull()) {
+            System.out.println("Full");
+            return;
+        }
+        else {
+            data[++index] = item;
+            heapify(index);
+        }
+
+        System.out.println(size + " " + index);
+
     }
 
     public void heapify(int index) {
@@ -98,7 +106,7 @@ public class MinHeap {
     private void heapify_bottom(int i) {
         
         // if given index is greater then number of items stored in list then return
-        if ( 2 * i > index || isEmpty()) return; 
+        if (2 * i >= index || isEmpty()) return; 
 
         // index's of child of parent node
         int left_child = (2 * i)+ 1;
@@ -122,7 +130,7 @@ public class MinHeap {
     }
 
     public boolean isFull() {
-        return this.size == this.index - 1;
+        return this.size - 1== this.index;
     }
 
     public boolean isEmpty() {
@@ -136,7 +144,7 @@ public class MinHeap {
 
 
     public static void main(String[] args) {
-        MinHeap minHeap = new MinHeap(30);
+        MinHeap minHeap = new MinHeap(4);
         minHeap.insert(10);
         minHeap.insert(5);
         minHeap.insert(2);
@@ -149,20 +157,7 @@ public class MinHeap {
         minHeap.insert(10000000);
         System.out.println(minHeap);
 
-
-        System.out.println("Removing element: " + minHeap.remove());
-        System.out.println("Removing element: " + minHeap.remove());
-        System.out.println("Removing element: " + minHeap.remove());
-        System.out.println("Removing element: " + minHeap.remove());
-        System.out.println("Removing element: " + minHeap.remove());
-        System.out.println("Removing element: " + minHeap.remove());
-        System.out.println("Removing element: " + minHeap.remove());
-        System.out.println("Removing element: " + minHeap.remove());
-        System.out.println("Removing element: " + minHeap.remove());
-        System.out.println("Removing element: " + minHeap.remove());
-        System.out.println("Removing element: " + minHeap.remove());
-        System.out.println("Removing element: " + minHeap.remove());
-
+        while (!minHeap.isEmpty()) System.out.println(minHeap.remove());
         System.out.println(minHeap);
     }
 }
