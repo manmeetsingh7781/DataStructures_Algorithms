@@ -51,15 +51,14 @@ public class MinHeap {
     public void insert(int item) {
         // normal insertion in linear way
         if (isFull()) {
-            System.out.println("Full");
             return;
         }
         else {
             data[++index] = item;
+
+            // once the item is added, conver the unordered list to heap so that we get min/max element at root (on top)
             heapify(index);
         }
-
-        System.out.println(size + " " + index);
 
     }
 
@@ -86,11 +85,13 @@ public class MinHeap {
 
         int element = data[0];  // get root element
         data[0] = data[index];  // get the last element and repalce it with root element
+
+        // set the last value of an array with MAX (treat as a NULL)
         data[index] = Integer.MAX_VALUE; 
     
         index--;
         
-        // since we placed new element at top, we need to heapify again in order to get minimum value
+        // since we placed new element at top, we need to heapify again in order to get minimum value at the top
         heapify_bottom(0);
 
         return element;
@@ -144,17 +145,14 @@ public class MinHeap {
 
 
     public static void main(String[] args) {
-        MinHeap minHeap = new MinHeap(4);
-        minHeap.insert(10);
-        minHeap.insert(5);
-        minHeap.insert(2);
+        MinHeap minHeap = new MinHeap(7);
+        minHeap.insert(9);
+        minHeap.insert(8);
         minHeap.insert(3);
-        minHeap.insert(-3);
-        minHeap.insert(31);
-        minHeap.insert(-45);
-        minHeap.insert(43);
-        minHeap.insert(-443);
-        minHeap.insert(10000000);
+        minHeap.insert(5);
+        minHeap.insert(6);
+        minHeap.insert(1);
+
         System.out.println(minHeap);
 
         while (!minHeap.isEmpty()) System.out.println(minHeap.remove());
