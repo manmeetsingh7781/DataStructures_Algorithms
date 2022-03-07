@@ -125,21 +125,31 @@ public class MinHeap {
         int left_child = (2 * i) + 1;
         int right_child = (2 * i) + 2;
         
-        // if left child is not NULL and Left child is smaller then Right child as well Left child has smaller value then root then swap
-        if (data[left_child] != Integer.MAX_VALUE && data[left_child] < data[right_child] && data[left_child] < data[i]) {
 
-            swap(i, left_child);
-            // heapify the left sub tree so that we bubble down the largest element to the bottom of the tree
-            heapify_bottom(left_child);
+     
+        // if it only has left child
+        if (left_child <= index && right_child > index) {
+            if(data[left_child] < data[i]) {
+                swap(left_child, i);
+                heapify_bottom(left_child);
+            }
         }else {
-             
-            // if right child is not NULL and Right child has smaller value then root then swap
-            if (data[right_child] != Integer.MAX_VALUE && data[right_child] < data[i]) {
-                swap(i, right_child);
-                heapify_bottom(right_child);
+            // at this point: our children are in range of index 
+            if (data[left_child] < data[right_child] && data[left_child] < data[i]) {
+                swap(left_child, i);
+
+                // heapify the left sub tree so that we bubble down the largest element to the bottom of the tree
+                heapify_bottom(left_child);
+            }else {
+                // if right child is not NULL and Right child is smaller then Left child as well Right child has smaller value then root then swap
+                if (data[right_child] < data[i]) {
+                    swap(right_child, i);
+                    // heapify the right sub tree so that we bubble down the largest element to the bottom of the tree
+                    heapify_bottom(right_child);
+                }
             }
         }
-
+        
     }
 
 
@@ -208,44 +218,28 @@ public class MinHeap {
     }
 
     public static void main(String[] args) {
-        // MinHeap minHeap = new MinHeap(10);
-
-        // int data [] = {750, 782, 331, 381};
-        // System.out.println(Arrays.toString(data));
-        // minHeap.MIN_HEAP(data);
        
-        // System.out.println(minHeap);
-        // while (!minHeap.isEmpty()) {
-        //     System.out.println(minHeap.remove());
-        // }
-
-
-
-
-
-
         
+        /// Test Case
         Random random = new Random();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter how many test cases you would like to do: ");
         int tests = scanner.nextInt();
         System.out.println("How many elements you would like to store in a Heap: ");
         int size = scanner.nextInt();
-        MinHeap minHeap = new MinHeap(size);
+        MinHeap minHeap = new MinHeap(size);   
+        // int data [] = new int[size];
         for(int j = 0; j < tests; j++){
             for(int i = 0; i < size; i++) {
-                 minHeap.insert(random.nextInt(1000));
+                minHeap.insert(random.nextInt(1000));
             }
-           
+            // minHeap.MIN_HEAP(data);
             System.out.println(minHeap);
             while (!minHeap.isEmpty()) System.out.println(minHeap.remove());
             System.out.println("===================Test " + (j+1) + " Completed ====================");
         }
         scanner.close();
         
-
-      
-
     }
 
 
