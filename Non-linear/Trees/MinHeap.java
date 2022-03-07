@@ -143,6 +143,7 @@ public class MinHeap {
     private void MIN_HEAP(int unordered_items []) {
         this.data = unordered_items;
         this.index = unordered_items.length - 1;
+        this.size = unordered_items.length;
         // start heaping from bottom to top of the tree
         // go from right to left of internal nodes array
 
