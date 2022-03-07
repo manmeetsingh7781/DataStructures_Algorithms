@@ -1,4 +1,3 @@
-package com.company.Trees;
 
 public class Main {
 

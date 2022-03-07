@@ -61,6 +61,7 @@ public class MinHeap {
 
     }
 
+    // from bottom to top: bubbling up the smallest item up to the root
     public void heapify(int i) {
 
         // index of parent node
@@ -101,8 +102,11 @@ public class MinHeap {
     private boolean isLeaf(int i) {
         int left_child = 2 * i + 1;
         int right_child = 2 * i + 2;
-        if (left_child >= index && right_child >= index) return true;
-        return data[left_child] == Integer.MAX_VALUE && data[right_child] == Integer.MAX_VALUE;
+        try {
+            return data[left_child] == Integer.MAX_VALUE && data[right_child] == Integer.MAX_VALUE;
+        }catch (Exception er) {
+            return true;
+        }
     }
 
     private void swap(int indexA, int indexB) {
@@ -111,7 +115,7 @@ public class MinHeap {
         data[indexB] = temp;
     }
 
-    // top to bottom heapify
+    // from top to bottom of the tree, bubbling down largest item in the tree
     private void heapify_bottom(int i) {
         // if given index is greater then number of items stored in list then return
 
@@ -123,8 +127,8 @@ public class MinHeap {
         
         // if left child is not NULL and Left child is smaller then Right child as well Left child has smaller value then root then swap
         if (data[left_child] != Integer.MAX_VALUE && data[left_child] < data[right_child] && data[left_child] < data[i]) {
+
             swap(i, left_child);
-            
             // heapify the left sub tree so that we bubble down the largest element to the bottom of the tree
             heapify_bottom(left_child);
         }else {
@@ -146,9 +150,8 @@ public class MinHeap {
         this.size = unordered_items.length;
         // start heaping from bottom to top of the tree
         // go from right to left of internal nodes array
-
-        int size = data.length;
-        for(int i = (size / 2) - 1; i >= 0; i--) {
+        int s = data.length;
+        for(int i = (s / 2 )-1; i >= 0; i--) {
             
             // bubble up smaller item to the root
             heapify(i);
@@ -205,40 +208,43 @@ public class MinHeap {
     }
 
     public static void main(String[] args) {
-        MinHeap min = new MinHeap(5);
-        int data [] = {7961, 19158, 67967, 60906, 84969, 43312, 34250, 49507, 10877, 23793};
-        System.out.println(Arrays.toString(data));
-        min.MIN_HEAP(data);
+        // MinHeap minHeap = new MinHeap(10);
+
+        // int data [] = {750, 782, 331, 381};
+        // System.out.println(Arrays.toString(data));
+        // minHeap.MIN_HEAP(data);
        
-        System.out.println(min);
-        while (!min.isEmpty()) {
-            System.out.println(min.remove());
-        }
+        // System.out.println(minHeap);
+        // while (!minHeap.isEmpty()) {
+        //     System.out.println(minHeap.remove());
+        // }
 
 
 
 
 
 
-        /* Test Case 
-            Random random = new Random();
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter how many test cases you would like to do: ");
-            int tests = scanner.nextInt();
-            System.out.println("How many elements you would like to store in a Heap: ");
-            int size = scanner.nextInt();
-            MinHeap minHeap = new MinHeap(size);
-            for(int j = 0; j < tests; j++){
-                for(int i = 0; i < size; i++) {
-                    minHeap.insert(random.nextInt(1000));
-                }
-                System.out.println(minHeap);
-                while (!minHeap.isEmpty()) System.out.println(minHeap.remove());
-                System.out.println("===================Test " + (j+1) + " Completed ====================");
+        
+        Random random = new Random();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter how many test cases you would like to do: ");
+        int tests = scanner.nextInt();
+        System.out.println("How many elements you would like to store in a Heap: ");
+        int size = scanner.nextInt();
+        MinHeap minHeap = new MinHeap(size);
+        for(int j = 0; j < tests; j++){
+            for(int i = 0; i < size; i++) {
+                 minHeap.insert(random.nextInt(1000));
             }
-            scanner.close();
+           
+            System.out.println(minHeap);
+            while (!minHeap.isEmpty()) System.out.println(minHeap.remove());
+            System.out.println("===================Test " + (j+1) + " Completed ====================");
+        }
+        scanner.close();
+        
 
-        */
+      
 
     }
 
