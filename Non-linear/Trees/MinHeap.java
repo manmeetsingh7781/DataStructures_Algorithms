@@ -1,5 +1,3 @@
-package com.company.Trees;
-
 
 import java.util.Arrays;
 import java.util.Random;
@@ -38,7 +36,7 @@ import java.util.Scanner;
 public class MinHeap {
 
     private int index, size;
-    private final int data[];
+    private int data[];
 
     public MinHeap(int size) {
         this.index = -1;
@@ -103,9 +101,7 @@ public class MinHeap {
     private boolean isLeaf(int i) {
         int left_child = 2 * i + 1;
         int right_child = 2 * i + 2;
-        if (left_child-1 >= index) {
-            return true;
-        }
+        if (left_child >= index && right_child >= index) return true;
         return data[left_child] == Integer.MAX_VALUE && data[right_child] == Integer.MAX_VALUE;
     }
 
@@ -117,8 +113,8 @@ public class MinHeap {
 
     // top to bottom heapify
     private void heapify_bottom(int i) {
-        
         // if given index is greater then number of items stored in list then return
+
         if (isLeaf(i) || isEmpty()) return; 
 
         // index's of child of parent node
@@ -140,6 +136,26 @@ public class MinHeap {
             }
         }
 
+    }
+
+
+    // heapifies the unordered list 
+    private void MIN_HEAP(int unordered_items []) {
+        this.data = unordered_items;
+        this.index = unordered_items.length - 1;
+        // start heaping from bottom to top of the tree
+        // go from right to left of internal nodes array
+
+        int size = data.length;
+        for(int i = (size / 2) - 1; i >= 0; i--) {
+            
+            // bubble up smaller item to the root
+            heapify(i);
+
+            // while swap there might be greater element that we need to bubble down 
+            heapify_bottom(i);
+
+        }
     }
 
     public boolean isFull() {
@@ -168,26 +184,62 @@ public class MinHeap {
         return elm;
     }
 
-    public static void main(String[] args) {
+    public void getInternalNodes(){
+
+        // formula to get internal nodes
+        int start = 0;
+        int stop = (index / 2) - 1;
         
+        for (int i = start; i <= stop; i++) {
+            System.out.println(data[i]);
+        }
+    }
 
-        Random random = new Random();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter how many test cases you would like to do: ");
-        int tests = scanner.nextInt();
-        System.out.println("How many elements you would like to store in a Heap: ");
-        int size = scanner.nextInt();
+    public void getLeaves() {
+        int start = (index / 2);
+        int stop = index;
+        for (int i = start; i <= stop; i++) {
+            System.out.println(data[i]);
+        }
+    }
 
-        MinHeap minHeap = new MinHeap(size);
-        for(int j = 0; j < tests; j++){
+    public static void main(String[] args) {
+        MinHeap min = new MinHeap(5);
+        int data [] = {7961, 19158, 67967, 60906, 84969, 43312, 34250, 49507, 10877, 23793};
+        System.out.println(Arrays.toString(data));
+        min.MIN_HEAP(data);
+       
+        System.out.println(min);
+        while (!min.isEmpty()) {
+            System.out.println(min.remove());
+        }
+
+
+
+
+
+
+        /* Test Case 
+            Random random = new Random();
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter how many test cases you would like to do: ");
+            int tests = scanner.nextInt();
+            System.out.println("How many elements you would like to store in a Heap: ");
+            int size = scanner.nextInt();
+            MinHeap minHeap = new MinHeap(size);
+            for(int j = 0; j < tests; j++){
                 for(int i = 0; i < size; i++) {
                     minHeap.insert(random.nextInt(1000));
                 }
                 System.out.println(minHeap);
                 while (!minHeap.isEmpty()) System.out.println(minHeap.remove());
                 System.out.println("===================Test " + (j+1) + " Completed ====================");
-        }
+            }
+            scanner.close();
 
-       scanner.close();
+        */
+
     }
+
+
 }
