@@ -36,9 +36,8 @@ import java.util.Random;
  */
 public class MinHeap {
 
-    private int index;
+    private int index, size;
     private final int data[];
-    private int size;
 
     public MinHeap(int size) {
         this.index = -1;
@@ -134,7 +133,7 @@ public class MinHeap {
     }
 
     public boolean isFull() {
-        return this.size - 1== this.index;
+        return this.size - 1 == this.index;
     }
 
     public boolean isEmpty() {
@@ -146,6 +145,18 @@ public class MinHeap {
         return Arrays.toString(data);
     }
 
+    public int getNSmallest(int n) {
+        if (n < 1) return -1;
+        n--;
+        int i = 0;
+        int elm = -1;
+        while (!isEmpty()) {
+            elm = remove();
+            if (i == n) break;
+            i++;
+        }
+        return elm;
+    }
 
     public static void main(String[] args) {
         MinHeap minHeap = new MinHeap(7);
@@ -157,7 +168,8 @@ public class MinHeap {
 
         System.out.println(minHeap);
 
-        while (!minHeap.isEmpty()) System.out.println(minHeap.remove());
+
+        System.out.println("5th smallest is: " + minHeap.getNSmallest(5));
         System.out.println(minHeap);
     }
 }
