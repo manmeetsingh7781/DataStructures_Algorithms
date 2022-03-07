@@ -97,6 +97,12 @@ public class MinHeap {
         return element;
     }
 
+    private boolean isLeaf(int i) {
+        int left_child = 2 * i + 1;
+        int right_child = 2 * i + 2;
+        return data[left_child] == Integer.MAX_VALUE && data[right_child] == Integer.MAX_VALUE;
+    }
+
     private void swap(int indexA, int indexB) {
         int temp = data[indexA];
         data[indexA] = data[indexB];
@@ -107,7 +113,7 @@ public class MinHeap {
     private void heapify_bottom(int i) {
         
         // if given index is greater then number of items stored in list then return
-        if (2 * i >= index || isEmpty()) return; 
+        if (isLeaf(i) || isEmpty()) return; 
 
         // index's of child of parent node
         int left_child = (2 * i)+ 1;
@@ -146,15 +152,9 @@ public class MinHeap {
 
     public static void main(String[] args) {
         MinHeap minHeap = new MinHeap(7);
-        minHeap.insert(9);
-        minHeap.insert(8);
-        minHeap.insert(3);
-        minHeap.insert(5);
-        minHeap.insert(6);
-        minHeap.insert(1);
-
-        System.out.println(minHeap);
-
+        for(int i=0; i< 10; i++ ){
+            minHeap.insert(i);
+        }
         while (!minHeap.isEmpty()) System.out.println(minHeap.remove());
         System.out.println(minHeap);
     }
