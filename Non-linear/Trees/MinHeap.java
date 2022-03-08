@@ -39,11 +39,16 @@ public class MinHeap {
     private int data[];
 
     public MinHeap(int size) {
+
+        // keep track of index of last node inserted into an array
         this.index = -1;
         
         this.data = new int[size];
 
+        // initialize all nodes to Integer.MAX_VALUE (positive infinity)
         for (int i = 0; i < size; i++) data[i] = Integer.MAX_VALUE;
+
+        // the size limit of an array
         this.size = size;
     }
 
@@ -216,6 +221,32 @@ public class MinHeap {
             System.out.println(data[i]);
         }
     }
+
+
+    public int getSize() {
+        return this.size;
+    }
+
+    public int getIndex() {
+        return this.index;
+    }
+
+    public void setIndex(int i) {
+        this.index = i;
+    }
+
+    public int[] getData() {
+        return this.data;
+    }
+
+    public void setData(int[] data) {
+        this.data = data;
+    }
+
+    public void setSize(int s) {
+        this.size = s;
+    }
+
 
     public static void main(String[] args) {
        

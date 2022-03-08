@@ -1,4 +1,4 @@
-package com.company;
+package Sorting;
 
 public class SelectionSort{
 

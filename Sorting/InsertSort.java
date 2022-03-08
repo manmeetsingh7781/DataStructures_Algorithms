@@ -1,3 +1,5 @@
+package Sorting;
+
 import java.util.ArrayList;
 
 public class InsertSort<T extends Number> extends ArrayList<T> {

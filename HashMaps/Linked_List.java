@@ -1,4 +1,4 @@
-package com.company.DynamicDS;
+package HashMaps;
 
 import java.util.Optional;
 

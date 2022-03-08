@@ -1,3 +1,5 @@
+package Sorting;
+
 import java.lang.System;
 
 public class MergeSort{

@@ -1,4 +1,5 @@
-package com.company.DynamicDS;
+package HashMaps;
+
 
 import java.util.Arrays;
 import java.util.Optional;

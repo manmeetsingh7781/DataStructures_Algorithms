@@ -1,6 +1,3 @@
-package com.company.Matrix;
-
-
 import java.util.Arrays;
 
 public class Matrix {
