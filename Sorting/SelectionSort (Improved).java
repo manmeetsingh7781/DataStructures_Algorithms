@@ -1,6 +1,6 @@
 package Sorting;
 
-class SelectionSort{
+class SelectionSort_Improved{
 
 
       // find the smallest element and place it at the beginning
