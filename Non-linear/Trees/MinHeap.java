@@ -228,12 +228,12 @@ public class MinHeap {
         System.out.println("How many elements you would like to store in a Heap: ");
         int size = scanner.nextInt();
         MinHeap minHeap = new MinHeap(size);   
-        // int data [] = new int[size];
+        int data [] = new int[size];
         for(int j = 0; j < tests; j++){
             for(int i = 0; i < size; i++) {
-                minHeap.insert(random.nextInt(1000));
+                data [i]=(random.nextInt(1000));
             }
-            // minHeap.MIN_HEAP(data);
+            minHeap.MIN_HEAP(data);
             System.out.println(minHeap);
             while (!minHeap.isEmpty()) System.out.println(minHeap.remove());
             System.out.println("===================Test " + (j+1) + " Completed ====================");

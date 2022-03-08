@@ -1,12 +1,3 @@
-package com.company.Trees;
-
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
-import com.company.Node;
-
 import java.util.ArrayList;
 
 public class BinaryTree<T extends Number> {

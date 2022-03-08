@@ -1,8 +1,3 @@
-package com.company.Trees;
-
-import com.company.BinaryTree;
-import com.company.Node;
-
 import java.util.*;
 
 public class AVLTree<T extends Number> extends BinaryTree<T> {

@@ -3,7 +3,7 @@
 // (powered by FernFlower decompiler)
 //
 
-package com.company;
+
 
 public class Node<T extends Number> {
     private T data;
