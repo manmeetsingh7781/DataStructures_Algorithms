@@ -30,9 +30,9 @@ import java.util.Scanner;
  * index of child node at i index then the Parent of that child node is at Math.ciel( i / 2) - 1
  * <p>
  * Representation:
- * 1               Root: Level 0 -> 2^0 = 1 Node
- * 3     5                  Level 1 -> 2^1 = 2 Nodes
- * 6    7                      Level 2 -> 2^2 = 4 Nodes, but we have 2 nodes from Left to right Hence it's "Almost complete binary tree"
+ *                  1               Root: Level 0 -> 2^0 = 1 Node
+ *               3     5                  Level 1 -> 2^1 = 2 Nodes
+ *            6    7                      Level 2 -> 2^2 = 4 Nodes, but we have 2 nodes from Left to right Hence it's "Almost complete binary tree"
  */
 public class MinHeap {
 
