@@ -57,9 +57,75 @@ public class MaxHeap extends MinHeap {
         return super.toString();
     }
 
+    @Override
     public int remove() {
-        return data[0];
+
+
+        // 0. check if tree is empty then return -1 else follow steps below 
+        // 1. take out root item: Largest item in the tree
+        // 2. replace root item with leaf node on left sub tree: last item in the array
+        // 3. replace last item in the array NULL
+        // 4. update index to index -= 1: Since we deleted one item
+        // 5. Heapify from root to the bottom of tree by comparing parent with nodes  and swapping if needed
+
+        // 0
+        if (super.isEmpty()) return -1;
+
+        // 1
+        int largest_item = data[0];
+    
+        // 2
+        data[0] = data[index];
+
+        // 3
+        data[index] = Integer.MIN_VALUE;
+        
+        // 4
+        index--;
+
+        // 5
+        heapify_bottom(0);
+
+        return largest_item;
     }
+
+
+    private void heapify_bottom(int i) {
+
+        if (isLeaf(i)) return;
+
+        // compare ith node with it's children and swap accordingly
+
+        int left_index = (2 * i) + 1;
+        int right_index = (2 * i) + 2;
+
+
+        // if parent has only 1 node
+
+        if (left_index <= index && right_index > index) {
+            if ( data[left_index] > data[i]){
+                swap(left_index, i);
+                heapify_bottom(left_index);
+            }
+        }else {
+            
+            // if parent has children
+
+            if (data[left_index] > data[right_index] && data[left_index] > data[i]) {
+                swap(left_index, i);
+                heapify_bottom(left_index);
+            }else {
+                if (data[right_index] > data[i]) {
+                    swap(right_index, i);
+                    heapify_bottom(right_index);
+                }
+            }
+        }
+
+
+
+    }
+    
 
     public static void main(String[] args) {
        

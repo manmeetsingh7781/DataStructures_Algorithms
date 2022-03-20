@@ -106,7 +106,7 @@ public class MinHeap {
         return element;
     }
 
-    private boolean isLeaf(int i) {
+    protected boolean isLeaf(int i) {
         int left_child = 2 * i + 1;
         int right_child = 2 * i + 2;
         try {
@@ -251,39 +251,26 @@ public class MinHeap {
 
     public static void main(String[] args) {
        
-       
-        int size = 5;
-        int random_data[] = new int [] {10, 5, 60, 12, 1};
-        MinHeap minHeap = new MinHeap(size);
-        minHeap.MIN_HEAP(random_data);
 
-        System.out.println(minHeap);
-        System.out.println(minHeap.remove());
-        System.out.println(minHeap.remove());
-        System.out.println(minHeap.remove());
-        System.out.println(minHeap.remove());
-        System.out.println(minHeap.remove());
-
-
-        /// Test Case
-        // Random random = new Random();
-        // Scanner scanner = new Scanner(System.in);
-        // System.out.println("Enter how many test cases you would like to do: ");
-        // int tests = scanner.nextInt();
-        // System.out.println("How many elements you would like to store in a Heap: ");
-        // int size = scanner.nextInt();
-        // MinHeap minHeap = new MinHeap(size);   
-        // int data [] = new int[size];
-        // for(int j = 0; j < tests; j++){
-        //     for(int i = 0; i < size; i++) {
-        //         data [i]=(random.nextInt(1000));
-        //     }
-        //     minHeap.MIN_HEAP(data);
-        //     System.out.println(minHeap);
-        //     while (!minHeap.isEmpty()) System.out.println(minHeap.remove());
-        //     System.out.println("===================Test " + (j+1) + " Completed ====================");
-        // }
-        // scanner.close();
+        // Test Case
+        Random random = new Random();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter how many test cases you would like to do: ");
+        int tests = scanner.nextInt();
+        System.out.println("How many elements you would like to store in a Heap: ");
+        int size = scanner.nextInt();
+        MinHeap minHeap = new MinHeap(size);   
+        int data [] = new int[size];
+        for(int j = 0; j < tests; j++){
+            for(int i = 0; i < size; i++) {
+                data [i]=(random.nextInt(1000));
+            }
+            minHeap.MIN_HEAP(data);
+            System.out.println(minHeap);
+            while (!minHeap.isEmpty()) System.out.println(minHeap.remove());
+            System.out.println("===================Test " + (j+1) + " Completed ====================");
+        }
+        scanner.close();
         
     }
 
