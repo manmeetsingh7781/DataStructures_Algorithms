@@ -69,7 +69,7 @@ public class MinHeap {
 
     // from bottom to top: bubbling up the smallest item up to the root
     // compares root with parent and swaps if needed
-    public void heapify(int i) {
+    private void heapify(int i) {
 
         // index of parent node
         int parentIndex = (i - 1) / 2;
@@ -116,7 +116,7 @@ public class MinHeap {
         }
     }
 
-    private void swap(int indexA, int indexB) {
+    protected void swap(int indexA, int indexB) {
         int temp = data[indexA];
         data[indexA] = data[indexB];
         data[indexB] = temp;
@@ -206,7 +206,7 @@ public class MinHeap {
 
     public void getInternalNodes(){
 
-        // formula to get internal nodes
+        // formula to get internal nodes (parent nodes)
         int start = 0;
         int stop = (index / 2) - 1;
         
