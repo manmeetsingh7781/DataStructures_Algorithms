@@ -35,6 +35,7 @@ public class MaxHeap extends MinHeap {
     } 
 
     // process of bubbling up the last inserted value to where it blongs in the Heap   
+    // heapify from bottom of the tree up to root by comparing child with it's parent
     private void heapify(int i){
         
         // compare ith node with its parent, if parent is smaller then swap
@@ -58,6 +59,11 @@ public class MaxHeap extends MinHeap {
     }
 
     @Override
+    public boolean isEmpty() {
+        return this.index == -1;
+    }
+
+    @Override
     public int remove() {
 
 
@@ -69,8 +75,8 @@ public class MaxHeap extends MinHeap {
         // 5. Heapify from root to the bottom of tree by comparing parent with nodes  and swapping if needed
 
         // 0
-        if (super.isEmpty()) return -1;
-
+        if (isEmpty()) return -1;
+   
         // 1
         int largest_item = data[0];
     
@@ -90,6 +96,7 @@ public class MaxHeap extends MinHeap {
     }
 
 
+    // heapify from root to bottom of the tree by comparing parent with it's children
     private void heapify_bottom(int i) {
 
         if (isLeaf(i)) return;
@@ -121,9 +128,25 @@ public class MaxHeap extends MinHeap {
                 }
             }
         }
+    }
 
 
+    // returns top element
+    @Override
+    public int peek() {
+        return super.peek();
+    }
 
+    public int getNthLargest(int n){
+        int i = 0;
+        int elm = -1;
+        while (!isEmpty()) {
+            elm = remove();
+            if (i == n) break;
+            i++;
+        }
+        return elm;
+        
     }
     
 
@@ -138,7 +161,10 @@ public class MaxHeap extends MinHeap {
         heap.insert(1);
         heap.insert(1010);
         System.out.println(heap);
-        System.out.println(heap.remove());
+        System.out.println(heap.getNthLargest(1));
+        System.out.println(heap.peek());
+        System.out.println(heap.peek());
+        System.out.println(heap.peek());
     }
 
 };
