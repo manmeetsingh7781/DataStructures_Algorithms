@@ -191,9 +191,11 @@ public class MinHeap {
         return Arrays.toString(data);
     }
 
+    public int peek() {
+        return data[0];
+    }
+
     public int getNSmallest(int n) {
-        if (n < 1) return -1;
-        n--;
         int i = 0;
         int elm = -1;
         while (!isEmpty()) {
