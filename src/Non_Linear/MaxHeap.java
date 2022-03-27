@@ -137,6 +137,21 @@ public class MaxHeap extends MinHeap {
         return super.peek();
     }
 
+    public void update(int oldValue, int newValue) {
+        int index = contains(oldValue);
+        if (index == -1) return;
+        data[index] = newValue;
+
+        if (newValue > oldValue) {
+            // move up
+            heapify(index);
+        }else {
+            // move down
+            heapify_bottom(index);
+        }
+    }
+
+
     public int getNthLargest(int n){
         int i = 0;
         int elm = -1;
@@ -153,18 +168,34 @@ public class MaxHeap extends MinHeap {
     public static void main(String[] args) {
        
         MaxHeap heap = new MaxHeap(10);
+        
         heap.insert(10);
-        heap.insert(5);
-        heap.insert(50);
-        heap.insert(60);
-        heap.insert(0);
-        heap.insert(1);
-        heap.insert(1010);
+        heap.insert(11);
+        heap.insert(9);
+        heap.insert(8);
         System.out.println(heap);
-        System.out.println(heap.getNthLargest(1));
-        System.out.println(heap.peek());
-        System.out.println(heap.peek());
-        System.out.println(heap.peek());
+
+
+        heap.update(9, 7000);
+        System.out.println(heap);
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+
+        // MaxHeap heap = new MaxHeap(10);
+        // heap.insert(10);
+        // heap.insert(5);
+        // heap.insert(50);
+        // heap.insert(60);
+        // heap.insert(0);
+        // heap.insert(1);
+        // heap.insert(1010);
+        // System.out.println(heap);
+        // System.out.println(heap.getNthLargest(1));
+        // System.out.println(heap.peek());
+        // System.out.println(heap.peek());
+        // System.out.println(heap.peek());
     }
 
 };
