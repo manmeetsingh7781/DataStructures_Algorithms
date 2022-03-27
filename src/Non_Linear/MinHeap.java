@@ -1,5 +1,6 @@
 package Non_Linear;
 
+import java.rmi.server.SocketSecurityException;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -217,6 +218,27 @@ public class MinHeap {
         }
     }
 
+
+    public int contains(int item) {
+        for (int i = 0; i < this.data.length; i++) if (data[i] == item) return i;
+        return -1;
+    }
+
+    public void update(int oldValue, int newValue) {
+        int index = contains(oldValue);
+        if (index == -1) return;
+        data[index] = newValue;
+
+        if (newValue < oldValue) {
+            // move up
+            heapify(index);
+            System.out.println("Heapify");
+        }else {
+            // move down
+            heapify_bottom(index);
+        }
+    }
+
     public void getLeaves() {
         int start = (index / 2);
         int stop = index;
@@ -253,8 +275,23 @@ public class MinHeap {
 
     public static void main(String[] args) {
        
+        MinHeap heap = new MinHeap(10);
+        
+        heap.insert(10);
+        heap.insert(11);
+        heap.insert(9);
+        heap.insert(8);
+        System.out.println(heap);
 
-        // Test Case
+
+        heap.update(9, 7000);
+        System.out.println(heap);
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+
+        /* Test Case
         Random random = new Random();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter how many test cases you would like to do: ");
@@ -273,7 +310,7 @@ public class MinHeap {
             System.out.println("===================Test " + (j+1) + " Completed ====================");
         }
         scanner.close();
-        
+        */   
     }
 
 
