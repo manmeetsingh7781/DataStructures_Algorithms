@@ -219,7 +219,7 @@ public class MinHeap {
     }
 
 
-    public int contains(int item) {
+    protected int contains(int item) {
         for (int i = 0; i < this.data.length; i++) if (data[i] == item) return i;
         return -1;
     }
@@ -232,7 +232,6 @@ public class MinHeap {
         if (newValue < oldValue) {
             // move up
             heapify(index);
-            System.out.println("Heapify");
         }else {
             // move down
             heapify_bottom(index);
