@@ -1,10 +1,6 @@
 package Non_Linear;
 
-import java.rmi.server.SocketSecurityException;
 import java.util.Arrays;
-import java.util.Random;
-import java.util.Scanner;
-
 
 /**
  * Almost complete Binary Tree
@@ -172,10 +168,8 @@ public class MinHeap {
         // go from right to left of internal nodes array
         int parent_nodes = (size / 2) - 1;      // parent nodes with child(ren)
         for(int i = parent_nodes; i >= 0; i--) {
-            
             // compare parent nodes with their children and compare/swap if needed
             heapify_bottom(i);
-
         }
     }
 
